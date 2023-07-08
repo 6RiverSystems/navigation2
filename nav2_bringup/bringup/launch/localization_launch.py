@@ -88,6 +88,13 @@ def generate_launch_description():
             parameters=[configured_params],
             remappings=remappings),
 
+        Node(
+            package='tf2_ros',
+            executable='static_transform_publisher',
+            name='map_static',
+            output='screen',
+            parameters=[configured_params],
+            arguments=['0', '0', '0', '0', '0', '0', 'map', 'odom']),
         # Node(
         #     package='nav2_amcl',
         #     executable='amcl',
