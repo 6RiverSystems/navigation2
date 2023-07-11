@@ -129,16 +129,16 @@ def generate_launch_description():
         description='Full path to world model file to load')
 
     # Specify the actions
-    start_gazebo_server_cmd = ExecuteProcess(
-        condition=IfCondition(use_simulator),
-        cmd=['gzserver', '-s', 'libgazebo_ros_init.so',  '-s', 'libgazebo_ros_factory.so', world],
-        cwd=[launch_dir], output='screen')
+    # start_gazebo_server_cmd = ExecuteProcess(
+    #     condition=IfCondition(use_simulator),
+    #     cmd=['gzserver', '-s', 'libgazebo_ros_init.so',  '-s', 'libgazebo_ros_factory.so', world],
+    #     cwd=[launch_dir], output='screen')
 
-    start_gazebo_client_cmd = ExecuteProcess(
-        condition=IfCondition(PythonExpression(
-            [use_simulator, ' and not ', headless])),
-        cmd=['gzclient'],
-        cwd=[launch_dir], output='screen')
+    # start_gazebo_client_cmd = ExecuteProcess(
+    #     condition=IfCondition(PythonExpression(
+    #         [use_simulator, ' and not ', headless])),
+    #     cmd=['gzclient'],
+    #     cwd=[launch_dir], output='screen')
 
     urdf = os.path.join(bringup_dir, 'urdf', 'turtlebot3_waffle.urdf')
 
@@ -192,8 +192,8 @@ def generate_launch_description():
     ld.add_action(declare_world_cmd)
 
     # Add any conditioned actions
-    ld.add_action(start_gazebo_server_cmd)
-    ld.add_action(start_gazebo_client_cmd)
+    # ld.add_action(start_gazebo_server_cmd)
+    # ld.add_action(start_gazebo_client_cmd)
 
     # Add the actions to launch all of the navigation nodes
     ld.add_action(start_robot_state_publisher_cmd)
